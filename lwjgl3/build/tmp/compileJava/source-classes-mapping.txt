@@ -1,0 +1,2 @@
+org/seariver/lwjgl3/Lwjgl3Launcher.java
+ org.seariver.lwjgl3.Lwjgl3Launcher
