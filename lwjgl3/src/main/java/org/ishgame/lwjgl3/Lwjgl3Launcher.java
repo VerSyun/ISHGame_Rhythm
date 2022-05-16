@@ -5,7 +5,7 @@ import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 import org.ishgame.RhythmGame;
 
 /**
- * Launches the desktop (LWJGL3) application.
+ * Запускает десктопное приложение (LWJGL3)
  */
 public class Lwjgl3Launcher {
 
