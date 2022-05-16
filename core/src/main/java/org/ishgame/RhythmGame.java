@@ -1,6 +1,6 @@
-package org.seariver;
+package org.ishgame;
 
-import org.seariver.screen.RhythmScreen;
+import org.ishgame.screen.RhythmScreen;
 
 public class RhythmGame extends BaseGame {
 

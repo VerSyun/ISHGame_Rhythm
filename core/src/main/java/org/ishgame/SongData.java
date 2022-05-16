@@ -1,4 +1,4 @@
-package org.seariver;
+package org.ishgame;
 
 import com.badlogic.gdx.files.FileHandle;
 

@@ -1,4 +1,4 @@
-package org.seariver.actor;
+package org.ishgame.actor;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Action;
@@ -6,8 +6,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.utils.Align;
-import org.seariver.BaseActor;
-import org.seariver.BaseGame;
+import org.ishgame.BaseActor;
+import org.ishgame.BaseGame;
 
 public class TargetBox extends BaseActor {
 

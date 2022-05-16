@@ -1,4 +1,4 @@
-package org.seariver.actor;
+package org.ishgame.actor;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import org.seariver.BaseActor;
+import org.ishgame.BaseActor;
 
 public class Message extends BaseActor {
 

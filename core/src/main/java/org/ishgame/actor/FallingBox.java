@@ -1,10 +1,10 @@
-package org.seariver.actor;
+package org.ishgame.actor;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Action;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
-import org.seariver.BaseActor;
+import org.ishgame.BaseActor;
 
 public class FallingBox extends BaseActor {
 

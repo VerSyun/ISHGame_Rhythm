@@ -1,4 +1,4 @@
-package org.seariver;
+package org.ishgame;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;

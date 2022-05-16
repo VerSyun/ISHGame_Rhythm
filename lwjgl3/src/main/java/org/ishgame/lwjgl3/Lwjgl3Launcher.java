@@ -2,7 +2,7 @@ package org.ishgame.lwjgl3;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
-import org.seariver.RhythmGame;
+import org.ishgame.RhythmGame;
 
 /**
  * Launches the desktop (LWJGL3) application.

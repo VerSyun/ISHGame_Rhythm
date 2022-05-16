@@ -1,4 +1,4 @@
-package org.seariver;
+package org.ishgame;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Camera;

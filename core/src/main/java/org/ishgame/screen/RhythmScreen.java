@@ -1,4 +1,4 @@
-package org.seariver.screen;
+package org.ishgame.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
@@ -10,13 +10,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.Align;
-import org.seariver.BaseActor;
-import org.seariver.BaseGame;
-import org.seariver.BaseScreen;
-import org.seariver.SongData;
-import org.seariver.actor.FallingBox;
-import org.seariver.actor.Message;
-import org.seariver.actor.TargetBox;
+import org.ishgame.BaseActor;
+import org.ishgame.BaseGame;
+import org.ishgame.BaseScreen;
+import org.ishgame.SongData;
+import org.ishgame.actor.FallingBox;
+import org.ishgame.actor.Message;
+import org.ishgame.actor.TargetBox;
 
 import java.io.File;
 import java.util.ArrayList;
