@@ -18,7 +18,7 @@ public class TargetBox extends BaseActor {
         loadTexture("box.png");
         setSize(64, 64);
 
-        // add a centered label containing letter with given color
+        // добавляет центрированную метку с буквой заданного цвета
         Label letterLabel = new Label(letter, BaseGame.labelStyle);
         letterLabel.setSize(64, 64);
         letterLabel.setAlignment(Align.center);

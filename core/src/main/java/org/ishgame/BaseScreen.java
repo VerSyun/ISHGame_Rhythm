@@ -32,31 +32,31 @@ public abstract class BaseScreen implements Screen, InputProcessor {
 
     public abstract void update(float deltaTime);
 
-    // Game-loop:
-    // (1) process input (discrete handled by listener; continuous in update)
-    // (2) update game logic
-    // (3) render the graphics
+    // Игровой цикл:
+    // (1) входной процесс
+    // (2) логика апдейтов
+    // (3) рендер графики
     public void render(float deltaTime) {
-        // limit amount of time that can pass while window is being dragged
+        // ограничение времени, которое может пройти при перетаскивании окна
         deltaTime = Math.min(deltaTime, 1 / 30f);
 
-        // act methods
+        // методы act
         uiStage.act(deltaTime);
         mainStage.act(deltaTime);
 
-        // defined by user
+        // определяется пользователем
         update(deltaTime);
 
-        // clear the screen
+        // очистка экрана
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        // draw the graphics
+        // отрисовка графики
         mainStage.draw();
         uiStage.draw();
     }
 
-    // methods required by Screen interface
+    // методы, требуемые интерфейсом Screen
     public void resize(int width, int height) {
     }
 
@@ -69,10 +69,6 @@ public abstract class BaseScreen implements Screen, InputProcessor {
     public void dispose() {
     }
 
-    /**
-     * Called when this becomes the active screen in a Game.
-     * Set up InputMultiplexer here, in case screen is reactivated at a later time.
-     */
     public void show() {
         InputMultiplexer inputProcessor = (InputMultiplexer) Gdx.input.getInputProcessor();
         inputProcessor.addProcessor(this);
@@ -80,11 +76,6 @@ public abstract class BaseScreen implements Screen, InputProcessor {
         inputProcessor.addProcessor(mainStage);
     }
 
-    /**
-     * Called when this is no longer the active screen in a Game.
-     * Screen class and Stages no longer process input.
-     * Other InputProcessors must be removed manually.
-     */
     public void hide() {
         InputMultiplexer inputProcessor = (InputMultiplexer) Gdx.input.getInputProcessor();
         inputProcessor.removeProcessor(this);
@@ -92,14 +83,13 @@ public abstract class BaseScreen implements Screen, InputProcessor {
         inputProcessor.removeProcessor(mainStage);
     }
 
-    /**
-     * Useful for checking for touch-down events.
-     */
+
+    //Полезно для проверки touchDown-ивентов (когда кнопкой или касанием юзер нажимает на объект класса Actor)
     public boolean isTouchDownEvent(Event event) {
         return (event instanceof InputEvent) && ((InputEvent) event).getType().equals(Type.touchDown);
     }
 
-    // methods required by InputProcessor interface
+    // методы, требуемые интерфейсом InputProcessor
     public boolean keyDown(int keycode) {
         return false;
     }

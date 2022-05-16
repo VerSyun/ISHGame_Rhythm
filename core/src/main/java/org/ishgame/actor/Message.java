@@ -78,6 +78,6 @@ public class Message extends BaseActor {
         setOpacity(0);
         setAnimation(congratulations);
         setScale(2);
-        addAction(Actions.fadeIn(4));
+        addAction(Actions.fadeIn(2));
     }
 }

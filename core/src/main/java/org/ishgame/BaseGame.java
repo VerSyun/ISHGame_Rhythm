@@ -39,10 +39,10 @@ public abstract class BaseGame extends Game {
      */
     public void create() {
 
-        // prepare for multiple classes/stages/actors to receive discrete input
+        // подготовка для нескольких классов/стадий/акторов/ получения дискретных значений
         Gdx.input.setInputProcessor(new InputMultiplexer());
 
-        // parameters for generating a custom bitmap font
+        // параметры для геренации кастомного растрового шрифта
         FreeTypeFontGenerator fontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("Bahnschrift.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter fontParameters = new FreeTypeFontGenerator.FreeTypeFontParameter();
         fontParameters.size = 32;

@@ -37,7 +37,7 @@ public class RhythmScreen extends BaseScreen {
 
     // сколько секунд до того, как NoteBox достигнет TargetBox
     private final float leadTime = 4;
-    // advanceTimer is set to be leadTime seconds ahead of music time position
+    // advanceTimer устанавливается в положение leadTime на несколько секунд раньше позиции музыкального времени
     private float advanceTimer;
     private float spawnHeight;
     private float noteSpeed;
@@ -165,7 +165,7 @@ public class RhythmScreen extends BaseScreen {
         if (gameMusic.isPlaying())
             timeLabel.setText("Time: " + (int) gameMusic.getPosition() + "\n" + "End: " + (int) songDuration);
 
-        // remove FallingBox instances that have passed below the target box
+        // убирает объекты класса FallingBox которые прошли ниже кнопок с буквами
         for (int i = 0; i < 4; i++) {
             ArrayList<FallingBox> fallingList = fallingLists.get(i);
             if (fallingList.size() > 0) {
