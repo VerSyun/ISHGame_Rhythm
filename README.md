@@ -9,7 +9,7 @@
 3. Затем, чтобы запустить игру, идем в Run -> Edit configurations..., создаем Application
 4. Выставляем настройки, как на скрине(папка Working directory определится сама):
 ![alt text](https://github.com/VerSyun/ISHGame_Rhythm/blob/main/setup.PNG)
-5. Запускаем. Чтобы выбрать уровень заходим в *папка с игрой*\ISHGame_Rhythm\assets и выбираем файл в формате .key. Пока доступны только "Love" и "Muta Arcadia"
+5. Запускаем. Чтобы выбрать уровень заходим в *папка с игрой*\ISHGame_Rhythm\assets\Levels и выбираем файл в формате .key. Пока доступны только "Love" и "Muta Arcadia"
 6. Играем.
 7. Радуемся
 ## Как создавать свои уровни.
