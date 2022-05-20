@@ -24,7 +24,7 @@ import java.util.Collections;
 
 import javax.swing.JFileChooser;
 
-public class RhythmScreen extends BaseScreen {
+public class RhythmScreen extends BaseScreen { //
 
     private ArrayList<String> keyList;
     private ArrayList<Color> colorList;
@@ -51,7 +51,7 @@ public class RhythmScreen extends BaseScreen {
     private FileHandle dataFileHandle;
     private FileHandle songFileHandle;
 
-    public void initialize() {
+    public void initialize() { //инициализация цвета, заднего фона, кнопок, и тд
 
         BaseActor background = new BaseActor(0, 0, mainStage);
         background.loadTexture("lucoa_bg.jpg");
@@ -93,7 +93,7 @@ public class RhythmScreen extends BaseScreen {
             if (!isTouchDownEvent(e))
                 return false;
 
-            fileOpen = new JFileChooser();
+            fileOpen = new JFileChooser("Levels");
             int base = fileOpen.showDialog(null, "Выберите файл формата .key");
             if (base == JFileChooser.APPROVE_OPTION){
                 File file = fileOpen.getSelectedFile();
@@ -135,7 +135,7 @@ public class RhythmScreen extends BaseScreen {
         uiTable.add(message).colspan(3).expandX().expandY();
     }
 
-    public void update(float dt) {
+    public void update(float dt) { //логика апдейтов
 
         if (songData == null)
             return;
@@ -187,7 +187,7 @@ public class RhythmScreen extends BaseScreen {
         }
     }
 
-    public boolean keyDown(int keycode) {
+    public boolean keyDown(int keycode) { //обрабатывает нажатие на кнопку
 
         if (songData == null)
             return false;

@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import org.ishgame.BaseActor;
 
-public class FallingBox extends BaseActor {
+public class FallingBox extends BaseActor { //класс, отвечающий за тайлы
 
     public FallingBox(float x, float y, Stage stage) {
         super(x, y, stage);

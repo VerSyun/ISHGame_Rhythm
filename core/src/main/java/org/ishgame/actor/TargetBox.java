@@ -9,7 +9,7 @@ import com.badlogic.gdx.utils.Align;
 import org.ishgame.BaseActor;
 import org.ishgame.BaseGame;
 
-public class TargetBox extends BaseActor {
+public class TargetBox extends BaseActor { //класс, отвечающий за логику кнопки
 
     public TargetBox(float x, float y, Stage stage, String letter, Color color) {
 
@@ -26,7 +26,7 @@ public class TargetBox extends BaseActor {
         addActor(letterLabel);
     }
 
-    public void pulse() {
+    public void pulse() { //анимация пульсации
 
         Action pulse = Actions.sequence(
                 Actions.scaleTo(1.2f, 1.2f, 0.05f),

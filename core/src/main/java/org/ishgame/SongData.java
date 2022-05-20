@@ -4,7 +4,7 @@ import com.badlogic.gdx.files.FileHandle;
 
 import java.util.ArrayList;
 
-public class SongData {
+public class SongData { //класс, который может записывать данные о мелодии (кнопка и тайминг) в файл формата .key и считывать данные с таких файлов
 
     private String songName;
     private float songDuration;
@@ -75,7 +75,7 @@ public class SongData {
         return keyTimeIndex >= keyTimeList.size();
     }
 
-    public void writeToFile(FileHandle file) {
+    public void writeToFile(FileHandle file) { //метод, который записывает в файл
         // boolean: true=append, false=overwrite.
         file.writeString(getSongName() + "\n", false);
         file.writeString(getSongDuration() + "\n", true);
@@ -85,7 +85,7 @@ public class SongData {
         }
     }
 
-    public void readFromFile(FileHandle file) {
+    public void readFromFile(FileHandle file) { //метод, который считывает в файл
         String rawData = file.readString();
         String[] dataArray = rawData.split("\n");
         setSongName(dataArray[0]);

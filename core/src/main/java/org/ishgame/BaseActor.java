@@ -23,15 +23,15 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import java.util.ArrayList;
 
 /**
- * Extends functionality of the LibGDX Actor class.
- * by adding support for textures/animation,
- * collision polygons, movement, world boundaries, and camera scrolling.
- * Most game objects should extend this class; lists of extensions can be retrieved by stage and class name.
+ * Расширяет функциональность класса Actor из LibGDX.
+ * Добавляет поддержку текстур/анимаций,
+ * движения, границ мира, и прокрутки камеры.
+ * Большинство игровых объектов должны расширять этот класс; списки расширений можно получить по названию этапа и класса.
  *
  * @author Lee Stemkoski
  * @see #Actor
  */
-public class BaseActor extends Group {
+public class BaseActor extends Group { //Класс, заимствованный у Ли Стемкоски, расширяет функциональность класса Actor из LibGDX.
 
     private Animation<TextureRegion> animation;
     private float elapsedTime;
@@ -45,23 +45,23 @@ public class BaseActor extends Group {
 
     private Polygon boundaryPolygon;
 
-    // stores size of game world for all actors
+    // сохраняет размер игрового мира для всех экземпляров класса Actor
     private static Rectangle worldBounds;
 
     public BaseActor(float x, float y, Stage stage) {
-        // call constructor from Actor class
+        // вызывает конструктор класса Actor
         super();
 
-        // perform additional initialization tasks
+        // выполняет дополнительные задачи инициализации
         setPosition(x, y);
         stage.addActor(this);
 
-        // initialize animation data
+        // инициализация данных анимации
         animation = null;
         elapsedTime = 0;
         animationPaused = false;
 
-        // initialize physics data
+        // инициализация данных физики
         velocityVec = new Vector2(0, 0);
         accelerationVec = new Vector2(0, 0);
         acceleration = 0;
@@ -72,8 +72,8 @@ public class BaseActor extends Group {
     }
 
     /**
-     * If this object moves completely past the world bounds,
-     * adjust its position to the opposite side of the world.
+     * Если объект полностью выходит за границы мира,
+     * корректирует его положение на противоположную сторону мира.
      */
     public void wrapAroundWorld() {
         if (getX() + getWidth() < 0)
@@ -90,33 +90,33 @@ public class BaseActor extends Group {
     }
 
     /**
-     * Align center of actor at given position coordinates.
+     * Выравнивание центра Actor по заданным координатам.
      *
-     * @param x x-coordinate to center at
-     * @param y y-coordinate to center at
+     * @param x x-коордианата центра
+     * @param y y-координата центра
      */
     public void centerAtPosition(float x, float y) {
         setPosition(x - getWidth() / 2, y - getHeight() / 2);
     }
 
     /**
-     * Repositions this BaseActor so its center is aligned
-     * with center of other BaseActor. Useful when one BaseActor spawns another.
+     * Перемещает этот BaseActor так, чтобы его центр был выровнен
+     * с центром другого BaseActor. Полезно, когда один BaseActor порождает другой.
      *
-     * @param other BaseActor to align this BaseActor with
+     * @param other BaseActor с которым нужно выровнять этот BaseActor
      */
     public void centerAtActor(BaseActor other) {
         centerAtPosition(other.getX() + other.getWidth() / 2, other.getY() + other.getHeight() / 2);
     }
 
     // ----------------------------------------------
-    // Animation methods
+    // Методы анимации
     // ----------------------------------------------
 
     /**
-     * Sets the animation used when rendering this actor; also sets actor size.
+     * Задает анимацию при рендере Actor; также задает его размер.
      *
-     * @param animation animation that will be drawn when actor is rendered
+     * @param animation анимация, которая будет нарисована, когда рендер завершен.
      */
     public void setAnimation(Animation<TextureRegion> animation) {
         this.animation = animation;
@@ -131,12 +131,12 @@ public class BaseActor extends Group {
     }
 
     /**
-     * Creates an animation from images stored in separate files.
+     * Создает анимацию из изображений, которые сохранены в разных файлах.
      *
-     * @param fileNames     array of names of files containing animation images
-     * @param frameDuration how long each frame should be displayed
-     * @param loop          should the animation loop
-     * @return animation created (useful for storing multiple animations)
+     * @param fileNames     список имен файлов, содержащих изображения анимации
+     * @param frameDuration как долго каждый кадр должен быть отображен
+     * @param loop          для зацикливания анимации
+     * @return возвращает созданную анимацию (полезно для сохранения нескольких анимаций)
      */
     public Animation<TextureRegion> loadAnimationFromFiles(String[] fileNames, float frameDuration, boolean loop) {
         int fileCount = fileNames.length;
@@ -162,14 +162,14 @@ public class BaseActor extends Group {
     }
 
     /**
-     * Creates an animation from a sprite-sheet: a rectangular grid of images stored in a single file.
+     * Создает анимацию из спрайт-листа: прямоугольной сетки изображений, хранящихся в одном файле..
      *
-     * @param fileName      name of file containing sprite-sheet
-     * @param rows          number of rows of images in sprite-sheet
-     * @param cols          number of columns of images in sprite-sheet
-     * @param frameDuration how long each frame should be displayed
-     * @param loop          should the animation loop
-     * @return animation created (useful for storing multiple animations)
+     * @param fileName      имя файла, содержащего спрайт-лист
+     * @param rows          количество строк изображений в спрайт-листе
+     * @param cols          количество столбцов изображений в листе спрайта
+     * @param frameDuration как долго каждый кадр должен быть отображен
+     * @param loop          для зацикливания анимации
+     * @return возвращает созданную анимацию (полезно для сохранения нескольких анимаций)
      */
     public Animation<TextureRegion> loadAnimationFromSheet(String fileName, int rows, int cols, float frameDuration, boolean loop) {
         Texture texture = new Texture(Gdx.files.internal(fileName), true);
@@ -198,10 +198,10 @@ public class BaseActor extends Group {
     }
 
     /**
-     * Convenience method for creating a 1-frame animation from a single texture.
+     * Удобный метод создания покадровой анимации из одной текстуры.
      *
-     * @param fileName names of image file
-     * @return animation created (useful for storing multiple animations)
+     * @param fileName имена файлов изображений
+     * @return возвращает созданную анимацию (полезно для сохранения нескольких анимаций)
      */
     public Animation<TextureRegion> loadTexture(String fileName) {
         String[] fileNames = new String[1];
@@ -210,17 +210,17 @@ public class BaseActor extends Group {
     }
 
     /**
-     * Set the pause state of the animation.
+     * Установка состояние паузы анимации.
      *
-     * @param pause true to pause animation, false to resume animation
+     * @param pause true для паузы, false для продолжения анимации
      */
     public void setAnimationPaused(boolean pause) {
         animationPaused = pause;
     }
 
     /**
-     * Checks if animation is complete: if play mode is normal (not looping)
-     * and elapsed time is greater than time corresponding to last frame.
+     * Проверяет, завершена ли анимация: если режим воспроизведения нормальный (не лупа)
+     * и прошедшее время больше, чем время, соответствующее последнему кадру.
      *
      * @return
      */
@@ -229,9 +229,9 @@ public class BaseActor extends Group {
     }
 
     /**
-     * Sets the opacity of this actor.
+     * Задает прозрачность этого Actor.
      *
-     * @param opacity value from 0 (transparent) to 1 (opaque)
+     * @param opacity значения от: 0 (прозрачный) to 1 (непрозрачный)
      */
     public void setOpacity(float opacity) {
         this.getColor().a = opacity;
@@ -242,38 +242,38 @@ public class BaseActor extends Group {
     // ----------------------------------------------
 
     /**
-     * Set acceleration of this object.
+     * Задает ускорение этого Actor.
      *
-     * @param acceleration Acceleration in (pixels/second) per second.
+     * @param acceleration Ускорение в (пикселях в секунду) в секунду.
      */
     public void setAcceleration(float acceleration) {
         this.acceleration = acceleration;
     }
 
     /**
-     * Set deceleration of this object.
-     * Deceleration is only applied when object is not accelerating.
+     * Задает ускорение для объекта.
+     * Замедление применяется только тогда, когда объект не ускоряется.
      *
-     * @param deceleration Deceleration in (pixels/second) per second.
+     * @param deceleration Замедление в (пикселях в секунду) в секунду.
      */
     public void setDeceleration(float deceleration) {
         this.deceleration = deceleration;
     }
 
     /**
-     * Set maximum speed of this object.
+     * Задает максимальную скорость объекта.
      *
-     * @param maxSpeed Maximum speed of this object in (pixels/second).
+     * @param maxSpeed Максимальная скорость объекта в пискелях в секунду.
      */
     public void setMaxSpeed(float maxSpeed) {
         this.maxSpeed = maxSpeed;
     }
 
     /**
-     * Set the speed of movement (in pixels/second) in current direction.
-     * If current speed is zero (direction is undefined), direction will be set to 0 degrees.
+     * Установка скорости движения (в пикселях в секунду) в текущем направлении.
+     * Если текущая скорость равна нулю (направление не определено), направление будет установлено на 0 градусов..
      *
-     * @param speed of movement (pixels/second)
+     * @param speed скорость движения (пиксели в секунду)
      */
     public void setSpeed(float speed) {
         // if length is zero, then assume motion angle is zero degrees
@@ -284,49 +284,49 @@ public class BaseActor extends Group {
     }
 
     /**
-     * Calculates the speed of movement (in pixels/second).
+     * Рассчитывает скорость движения (в пикселях в секунду).
      *
-     * @return speed of movement (pixels/second)
+     * @return возвращает скорость движения (в пикселях в секунду)
      */
     public float getSpeed() {
         return velocityVec.len();
     }
 
     /**
-     * Determines if this object is moving (if speed is greater than zero).
+     * Определяет, движется ли данный объект (если скорость больше нуля)..
      *
-     * @return false when speed is zero, true otherwise
+     * @return возвращает false если скорость 0, true во всех остальных случаях.
      */
     public boolean isMoving() {
         return (getSpeed() > 0);
     }
 
     /**
-     * Sets the angle of motion (in degrees).
-     * If current speed is zero, this will have no effect.
+     * Задает угол движения (в градусах).
+     * Если текущая скорость равна нулю, это не будет иметь никакого эффекта.
      *
-     * @param angle of motion (degrees)
+     * @param angle угол движения (градусы)
      */
     public void setMotionAngle(float angle) {
         velocityVec.setAngleDeg(angle);
     }
 
     /**
-     * Get the angle of motion (in degrees), calculated from the velocity vector.
+     * Получает угол движения (в градусах), рассчитывается из вектора скорости.
      * <br>
-     * To align actor image angle with motion angle, use <code>setRotation( getMotionAngle() )</code>.
+     * Чтобы выровнять угол изображения актера с углом движения, используйте <code>setRotation( getMotionAngle() )</code>..
      *
-     * @return angle of motion (degrees)
+     * @return возвращает угол движения (градусы)
      */
     public float getMotionAngle() {
         return velocityVec.angleDeg();
     }
 
     /**
-     * Update accelerate vector by angle and value stored in acceleration field.
-     * Acceleration is applied by <code>applyPhysics</code> method.
+     * Обновление вектора ускорения по углу и значению, сохраненному в поле ускорения.
+     * Ускорение применяется методом <code>applyPhysics</code>.
      *
-     * @param angle Angle (degrees) in which to accelerate.
+     * @param angle Угол (в градусах), под которым необходимо ускориться.
      * @see #acceleration
      * @see #applyPhysics
      */
@@ -336,8 +336,8 @@ public class BaseActor extends Group {
     }
 
     /**
-     * Update accelerate vector by current rotation angle and value stored in acceleration field.
-     * Acceleration is applied by <code>applyPhysics</code> method.
+     * Обновление вектора ускорения на текущий угол поворота и значение, сохраненное в поле ускорения.
+     * Ускорение применяется методом <code>applyPhysics</code>.
      *
      * @see #acceleration
      * @see #applyPhysics
@@ -347,48 +347,48 @@ public class BaseActor extends Group {
     }
 
     /**
-     * Adjust velocity vector based on acceleration vector,
-     * then adjust position based on velocity vector. <br>
-     * If not accelerating, deceleration value is applied. <br>
-     * Speed is limited by maxSpeed value. <br>
-     * Acceleration vector reset to (0,0) at end of method. <br>
+     * Настраивает вектор скорости на основе вектора ускорения,
+     * затем корректирует положение на основе вектора скорости. <br>
+     * Если не ускоряется, применяется значение замедления. <br>
+     * Скорость ограничена значением maxSpeed. <br>
+     * Сброс вектора ускорения на (0,0) в конце метода. <br>
      *
-     * @param deltaTime Time elapsed since previous frame (delta time); typically obtained from <code>act</code> method.
+     * @param deltaTime Время, прошедшее с предыдущего кадра (deltalime); обычно получается из метода <code>act</code>..
      * @see #acceleration
      * @see #deceleration
      * @see #maxSpeed
      */
     public void applyPhysics(float deltaTime) {
-        // apply acceleration
+        // применяет ускорение
         velocityVec.add(accelerationVec.x * deltaTime, accelerationVec.y * deltaTime);
 
         float speed = getSpeed();
 
-        // decrease speed (decelerate) when not accelerating
+        // снижает скорость (замедляет), когда нет ускорения
         if (accelerationVec.len() == 0)
             speed -= deceleration * deltaTime;
 
-        // keep speed within set bounds
+        // поддерживает скорость в заданных пределах
         speed = MathUtils.clamp(speed, 0, maxSpeed);
 
-        // update velocity
+        // обновляет скорость
         setSpeed(speed);
 
-        // update position according to value stored in velocity vector
+        // обновление позиции в соответствии со значением, хранящимся в векторе скорости
         moveBy(velocityVec.x * deltaTime, velocityVec.y * deltaTime);
 
-        // reset acceleration
+        // сбрасывает ускорение
         accelerationVec.set(0, 0);
     }
 
     // ----------------------------------------------
-    // Collision polygon methods
+    // Методы полигонов столкновения
     // ----------------------------------------------
 
     /**
-     * Set rectangular-shaped collision polygon.
-     * This method is automatically called when animation is set,
-     * provided that the current boundary polygon is null.
+     * Устанавливает полигон столкновения прямоугольной формы.
+     * Этот метод автоматически вызывается при установке анимации,
+     * при условии, что текущий граничный полигон является нулевым (null).
      *
      * @see #setAnimation
      */
@@ -401,12 +401,12 @@ public class BaseActor extends Group {
     }
 
     /**
-     * Replace default (rectangle) collision polygon with an n-sided polygon. <br>
-     * Vertices of polygon lie on the ellipse contained within bounding rectangle.
-     * Note: one vertex will be located at point (0,width);
-     * a 4-sided polygon will appear in the orientation of a diamond.
+     * Заменяет прямоугольник столкновения по умолчанию (прямоугольник) на n-сторонний многоугольник. <br>
+     * Вершины многоугольника лежат на эллипсе, содержащемся в ограничивающем прямоугольнике.
+     * Примечание: одна вершина будет расположена в точке (0,ширина);
+     * появится 4-сторонний многоугольник в ориентации ромба.
      *
-     * @param numSides number of sides of the collision polygon
+     * @param numSides количество сторон прямоугольника столкновения
      */
     public void setBoundaryPolygon(int numSides) {
         float w = getWidth();
@@ -425,9 +425,9 @@ public class BaseActor extends Group {
     }
 
     /**
-     * Returns bounding polygon for this BaseActor, adjusted by Actor's current position and rotation.
+     * Возвращает ограничивающий многоугольник для этого BaseActor, скорректированный текущим положением и вращением Actor'а..
      *
-     * @return bounding polygon for this BaseActor
+     * @return ограничивающий многоугольник для этого BaseActor
      */
     public Polygon getBoundaryPolygon() {
         boundaryPolygon.setPosition(getX(), getY());
@@ -438,10 +438,10 @@ public class BaseActor extends Group {
     }
 
     /**
-     * Determine if this BaseActor overlaps other BaseActor (according to collision polygons).
+     * Определить, перекрывает ли данный BaseActor другой BaseActor (в соответствии с полигонами столкновения).
      *
-     * @param other BaseActor to check for overlap
-     * @return true if collision polygons of this and other BaseActor overlap
+     * @param other BaseActor для проверки перекрытия
+     * @return true, если полигоны столкновения этого и другого BaseActor перекрываются
      * @see #setBoundaryRectangle
      * @see #setBoundaryPolygon
      */
@@ -457,12 +457,12 @@ public class BaseActor extends Group {
     }
 
     /**
-     * Implement a "solid"-like behavior:
-     * when there is overlap, move this BaseActor away from other BaseActor
-     * along minimum translation vector until there is no overlap.
+     * Реализовать "твердое" поведение:
+     * если есть перекрытие, перемещает этот базовый вектор в сторону от другого базового вектора
+     * вдоль минимального вектора перевода до тех пор, пока не останется перекрытия.
      *
-     * @param other BaseActor to check for overlap
-     * @return direction vector by which actor was translated, null if no overlap
+     * @param other BaseActor для проверки перекрытия
+     * @return вектор направления, по которому был переведен актер, null, если нет перекрытия
      */
     public Vector2 preventOverlap(BaseActor other) {
         Polygon currentPoly = this.getBoundaryPolygon();
@@ -483,11 +483,11 @@ public class BaseActor extends Group {
     }
 
     /**
-     * Determine if this BaseActor is near other BaseActor (according to collision polygons).
+     * Определить, находится ли данный BaseActor рядом с другим BaseActor (согласно полигонам столкновения).
      *
-     * @param distance amount (pixels) by which to enlarge collision polygon width and height
-     * @param other    BaseActor to check if nearby
-     * @return true if collision polygons of this (enlarged) and other BaseActor overlap
+     * @param distance количество (пикселей), на которое следует увеличить ширину и высоту полигона столкновения
+     * @param other    BaseActor для проверки наличия поблизости
+     * @return true, если полигоны столкновения этого (увеличенного) и другого BaseActor перекрывают друг друга
      * @see #setBoundaryRectangle
      * @see #setBoundaryPolygon
      */
@@ -507,36 +507,36 @@ public class BaseActor extends Group {
     }
 
     /**
-     * Set world dimensions for use by methods boundToWorld() and scrollTo().
+     * Устанавливает размеры мира для использования методами boundToWorld() и scrollTo().
      *
-     * @param width  width of world
-     * @param height height of world
+     * @param width  ширина мира
+     * @param height высота мира
      */
     public static void setWorldBounds(float width, float height) {
         worldBounds = new Rectangle(0, 0, width, height);
     }
 
     /**
-     * Set world dimensions for use by methods boundToWorld() and scrollTo().
+     * Устанавливает размеры мира для использования методами boundToWorld() и scrollTo().
      *
-     * @param BaseActor whose size determines the world bounds (typically a background image)
+     * @param BaseActor, размер которого определяет границы мира (обычно это фоновое изображение)
      */
     public static void setWorldBounds(BaseActor referenceActor) {
         setWorldBounds(referenceActor.getWidth(), referenceActor.getHeight());
     }
 
     /**
-     * Get world dimensions
+     * Получает размеры мира
      *
-     * @return Rectangle whose width/height represent world bounds
+     * @return возвращает Rectangle, ширина/высота которого представляют границы мира
      */
     public static Rectangle getWorldBounds() {
         return worldBounds;
     }
 
     /**
-     * If an edge of an object moves past the world bounds,
-     * adjust its position to keep it completely on screen.
+     * Если край объекта перемещается за границы мира,
+     * регулирует его положение, чтобы он полностью находился на экране.
      */
     public void boundToWorld() {
         if (getX() < 0)
@@ -550,8 +550,8 @@ public class BaseActor extends Group {
     }
 
     /**
-     * Center camera on this object, while keeping camera's range of view
-     * (determined by screen size) completely within world bounds.
+     * Центрируйте камеру на этом объекте, сохраняя диапазон обзора камеры
+     * (определяется размером экрана) полностью в пределах мировых границ.
      */
     public void alignCamera() {
         Camera cam = this.getStage().getCamera();
@@ -567,18 +567,18 @@ public class BaseActor extends Group {
     }
 
     // ----------------------------------------------
-    // Instance list methods
+    // Методы списка экземпляров
     // ----------------------------------------------
 
     /**
-     * Retrieves a list of all instances of the object from the given stage with the given class name
-     * or whose class extends the class with the given name.
-     * If no instances exist, returns an empty list.
-     * Useful when coding interactions between different types of game objects in update method.
+     * Извлекает список всех экземпляров объекта с заданного этапа с заданным именем класса
+     * или чей класс расширяет класс с заданным именем.
+     * Если экземпляров не существует, возвращается пустой список.
+     * Полезно при кодировании взаимодействия между различными типами игровых объектов в методе update.
      *
-     * @param stage     Stage containing BaseActor instances
-     * @param className name of a class that extends the BaseActor class
-     * @return list of instances of the object in stage which extend with the given class name
+     * @param stage     Сцена (Stage), содержащая экземпляры BaseActor
+     * @param className имя класса, который расширяет класс BaseActor
+     * @return возвращает список экземпляров объекта на этапе, которые расширяются с помощью заданного имени класса
      */
     public static ArrayList<BaseActor> getList(Stage stage, String className) {
 
@@ -601,24 +601,24 @@ public class BaseActor extends Group {
     }
 
     /**
-     * Returns number of instances of a given class (that extends BaseActor).
+     * Возвращает количество экземпляров заданного класса (который расширяет BaseActor).
      *
-     * @param className name of a class that extends the BaseActor class
-     * @return number of instances of the class
+     * @param className имя класса, который расширяет класс BaseActor
+     * @return количество экземпляров класса
      */
     public static int count(Stage stage, String className) {
         return getList(stage, className).size();
     }
 
     // ----------------------------------------------
-    // Actor methods: act and draw
+    // методы класса Actor: act и draw
     // ----------------------------------------------
 
     /**
-     * Processes all Actions and related code for this object;
-     * automatically called by act method in Stage class.
+     * Обрабатывает все действия (Actions) и связанный с ними код для этого объекта;
+     * автоматически вызывается методом act в классе Stage.
      *
-     * @param deltaTime elapsed time (second) since last frame (supplied by Stage act method)
+     * @param deltaTime прошедшее время (секунда) с момента последнего кадра (предоставляется методом Stage act)
      */
     public void act(float deltaTime) {
         super.act(deltaTime);
@@ -628,18 +628,18 @@ public class BaseActor extends Group {
     }
 
     /**
-     * Draws current frame of animation; automatically called by draw method in Stage class. <br>
-     * If color has been set, image will be tinted by that color. <br>
-     * If no animation has been set or object is invisible, nothing will be drawn.
+     * Рисует текущий кадр анимации; автоматически вызывается методом draw в классе Stage. <br>
+     * Если был задан цвет, изображение будет тонировано этим цветом. <br>
+     * Если анимация не задана или объект невидим, ничего не будет нарисовано..
      *
-     * @param batch       (supplied by Stage draw method)
-     * @param parentAlpha (supplied by Stage draw method)
+     * @param batch       (поставляется по методу Stage draw)
+     * @param parentAlpha (поставляется по методу Stage draw)
      * @see #setColor
      * @see #setVisible
      */
     public void draw(Batch batch, float parentAlpha) {
 
-        // apply color tint effect
+        // применяет эффект оттенка цвета
         Color c = getColor();
         batch.setColor(c.r, c.g, c.b, c.a);
 

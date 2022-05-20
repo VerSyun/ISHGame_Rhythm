@@ -2,7 +2,7 @@ package org.ishgame;
 
 import org.ishgame.screen.RhythmScreen;
 
-public class RhythmGame extends BaseGame {
+public class RhythmGame extends BaseGame { //класс, который создает игру
 
     public void create() {
         super.create();

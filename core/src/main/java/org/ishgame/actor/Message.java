@@ -8,7 +8,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import org.ishgame.BaseActor;
 
-public class Message extends BaseActor {
+public class Message extends BaseActor { //класс, отвечающий за анимации сообщений
 
     public Animation perfect;
     public Animation great;

@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent.Type;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 
-public abstract class BaseScreen implements Screen, InputProcessor {
+public abstract class BaseScreen implements Screen, InputProcessor { //класс, отвечающий за отрисовку главного экрана и графики
 
     protected Stage mainStage;
     protected Stage uiStage;
