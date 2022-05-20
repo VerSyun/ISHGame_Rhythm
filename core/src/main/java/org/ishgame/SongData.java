@@ -85,7 +85,7 @@ public class SongData { //класс, который может записыва
         }
     }
 
-    public void readFromFile(FileHandle file) { //метод, который считывает в файл
+    public void readFromFile(FileHandle file) { //метод, который считывает из файла
         String rawData = file.readString();
         String[] dataArray = rawData.split("\n");
         setSongName(dataArray[0]);
@@ -94,7 +94,7 @@ public class SongData { //класс, который может записыва
         for (int i = 2; i < dataArray.length; i++) {
             String[] keyTimeData = dataArray[i].split(",");
             String key = keyTimeData[0];
-            Float time = Float.parseFloat(keyTimeData[1]);
+            Float time = Float.parseFloat(keyTimeData[1]) + 0.08f;
             keyTimeList.add(new KeyTimePair(key, time));
         }
     }
