@@ -93,7 +93,7 @@ public class RhythmScreen extends BaseScreen { //
             if (!isTouchDownEvent(e))
                 return false;
 
-            fileOpen = new JFileChooser("Levels");
+            fileOpen = new JFileChooser();
             int base = fileOpen.showDialog(null, "Выберите файл формата .key");
             if (base == JFileChooser.APPROVE_OPTION){
                 File file = fileOpen.getSelectedFile();

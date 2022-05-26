@@ -64,7 +64,7 @@ public abstract class BaseGame extends Game {
         NinePatch buttonPatch = new NinePatch(buttonTex, 24, 24, 24, 24);
         textButtonStyle.up = new NinePatchDrawable(buttonPatch);
         textButtonStyle.font = customFont;
-        textButtonStyle.fontColor = Color.GRAY;
+        textButtonStyle.fontColor = Color.GREEN;
     }
 
     /**
